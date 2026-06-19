@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体彩网 · 简明指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f9fc;
+            color: #1b2e35;
+            line-height: 1.7;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 开场短句 — 像故事引子 */
+        .story-hero {
+            margin-bottom: 48px;
+            padding: 40px 28px 36px;
+            background: linear-gradient(145deg, #d4ecef 0%, #bde0e6 100%);
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0, 70, 80, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-hero::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .story-hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b3a44;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-hero .opener {
+            font-size: 1.2rem;
+            color: #1f515b;
+            max-width: 640px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-hero .opener strong {
+            color: #05424f;
+        }
+
+        /* 承接段落 — 自然过渡，带出指南感 */
+        .guide-note {
+            background: #ffffffcc;
+            backdrop-filter: blur(8px);
+            padding: 28px 32px;
+            margin-bottom: 44px;
+            border-radius: 24px;
+            border-left: 6px solid #2b8c9e;
+            box-shadow: 0 4px 12px rgba(0, 40, 50, 0.04);
+            font-size: 1.05rem;
+        }
+
+        .guide-note p {
+            margin-bottom: 16px;
+        }
+
+        .guide-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .guide-note a {
+            color: #186d7c;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #7bbbc6;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .guide-note a:hover {
+            color: #09424d;
+            border-bottom-color: #09424d;
+        }
+
+        /* 特点网格 — 卡片风格，蓝绿点缀 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            padding: 28px 22px 30px;
+            border-radius: 28px;
+            box-shadow: 0 6px 14px rgba(30, 70, 80, 0.06);
+            transition: transform 0.15s, box-shadow 0.2s;
+            border: 1px solid #dbeef2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(20, 90, 100, 0.08);
+            border-color: #9acece;
+        }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #2b8c9e;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #12424b;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #2b4e57;
+            font-size: 0.98rem;
+        }
+
+        .feature-card .tag {
+            display: inline-block;
+            background: #d2ecee;
+            color: #0b4a55;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-top: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        /* 场景提醒 — 轻提示区块，像 FAQ 摘要 */
+        .reminder-block {
+            background: #e1f2f5;
+            padding: 32px 28px;
+            border-radius: 32px;
+            margin-bottom: 48px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 40px;
+            align-items: flex-start;
+        }
+
+        .reminder-item {
+            flex: 1 1 200px;
+            min-width: 160px;
+        }
+
+        .reminder-item .title {
+            font-weight: 600;
+            color: #054f5c;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .reminder-item .title span {
+            background: #2b8c9e;
+            color: white;
+            border-radius: 40px;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .reminder-item p {
+            color: #1b4f5a;
+            font-size: 0.95rem;
+        }
+
+        /* 温和结尾 — 自然收束 */
+        .gentle-footer {
+            padding: 28px 0 12px;
+            border-top: 1px solid #cde3e8;
+            text-align: center;
+            color: #2f6a75;
+        }
+
+        .gentle-footer p {
+            max-width: 600px;
+            margin: 0 auto 8px;
+            font-size: 0.98rem;
+        }
+
+        .gentle-footer .small-note {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 12px;
+        }
+
+        .gentle-footer a {
+            color: #186d7c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .gentle-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 600px) {
+            .story-hero {
+                padding: 28px 20px;
+            }
+            .story-hero h1 {
+                font-size: 1.8rem;
+            }
+            .story-hero .opener {
+                font-size: 1rem;
+            }
+            .guide-note {
+                padding: 20px 18px;
+            }
+            .feature-grid {
+                gap: 16px;
+            }
+            .feature-card {
+                padding: 22px 18px;
+            }
+            .reminder-block {
+                padding: 24px 18px;
+                flex-direction: column;
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 16px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- 开场短句：故事入口 -->
+        <div class="story-hero">
+            <h1>体彩网 · 一份简明指南</h1>
+            <div class="opener">
+                人们常常需要一个清晰的起点。这里没有复杂的术语，只有一条通往 <strong>体彩网</strong> 的安静通道。<br>
+                从了解开始，比匆忙点击更有意义。
+            </div>
+        </div>
+
+        <!-- 承接段落：从指南和提醒切入，自然包含链接 -->
+        <div class="guide-note">
+            <p>
+                当你想踏进体育彩票的世界，最好先熟悉它的门廊。<a href="https://portal-sportslottery.com">体彩网</a> 就是那个入口——它聚合了玩法介绍、资讯动态以及基础服务。但就像任何值得认真对待的事情，提前做好功课总不会错。
+            </p>
+            <p>
+                这篇页面不会代替你操作，但希望能帮你更快理清头绪。记住：任何涉及资金的行为，都值得你放慢脚步，确认信息来源，保持理性。
+            </p>
+        </div>
+
+        <!-- 特点列表：网格卡片，蓝绿点缀 -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">🧭</div>
+                <h3>结构清晰</h3>
+                <p>栏目划分明确，从竞彩到数字彩，每一项都有独立的说明页面，减少摸索成本。</p>
+                <span class="tag">导航友好</span>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📰</div>
+                <h3>资讯聚合</h3>
+                <p>官方公告、赛程变更、派奖信息集中呈现，不必在多个站点之间来回跳转。</p>
+                <span class="tag">信息集中</span>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🛡️</div>
+                <h3>基础安全提醒</h3>
+                <p>平台采用常规加密传输，但用户自身仍需保管好账户信息，避免公共场所泄露密码。</p>
+                <span class="tag">自助保护</span>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h3>移动适配</h3>
+                <p>页面在手机浏览器上同样可读，关键操作按钮缩放合理，无需频繁双指放大。</p>
+                <span class="tag">响应式</span>
+            </div>
+        </div>
+
+        <!-- 场景 / 提示区块（FAQ 摘要感） -->
+        <div class="reminder-block">
+            <div class="reminder-item">
+                <div class="title"><span>1</span> 初次使用</div>
+                <p>先浏览「玩法介绍」栏目，理解不同彩种的基础规则，再决定是否参与。</p>
+            </div>
+            <div class="reminder-item">
+                <div class="title"><span>2</span> 账户安全</div>
+                <p>务必绑定本人手机和邮箱，开启登录二次验证（如支持）。不共享账户。</p>
+            </div>
+            <div class="reminder-item">
+                <div class="title"><span>3</span> 理性参与</div>
+                <p>设定预算上限，不追号、不借贷。彩票是娱乐方式，并非收入来源。</p>
+            </div>
+            <div class="reminder-item">
+                <div class="title"><span>4</span> 遇到问题</div>
+                <p>优先查阅帮助中心或常见问题，尚未解决再联系在线客服，避免轻信非官方渠道。</p>
+            </div>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="gentle-footer">
+            <p>无论你选择深入了解，还是仅仅路过，都希望这篇简短的叙述能提供一点方向。</p>
+            <p>
+                若想亲自看看，可以前往 <a href="https://portal-sportslottery.com">体彩网</a> —— 保持好奇，也保持清醒。
+            </p>
+            <div class="small-note">
+                一份安静的指南 · 不构成任何建议
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

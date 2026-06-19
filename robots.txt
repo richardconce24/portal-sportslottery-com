@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://richardconce24.github.io/portal-sportslottery-com/sitemap.xml
